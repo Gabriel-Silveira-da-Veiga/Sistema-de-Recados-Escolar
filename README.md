@@ -11,6 +11,7 @@
 #Objetivo do software: Facilitar a organização de alunos em relação a atividades avaliativas
 
 #Funcionalidades do sistema:
+
 Funcionais
 -A possibilidade de criar e editar avisos/recados;
 -Um sistema de comentários;
