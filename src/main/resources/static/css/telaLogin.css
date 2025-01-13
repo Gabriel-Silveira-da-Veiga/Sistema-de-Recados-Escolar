@@ -1,0 +1,23 @@
+html, body{
+    background-color: #e9e9e9;
+    height: 100%;
+}
+#altura{
+    height: 100%;
+}
+h1{
+    text-align: center;
+    margin-top: 1%;
+}
+
+#login{
+    text-align: center;
+    padding: 2% 2% 2% 2%;
+    margin-top: 15%;
+}
+#principal{
+    background-color: white;
+    border-left: 10px groove #FFB200;
+    border-right: 10px ridge #FFB200;
+}
+
