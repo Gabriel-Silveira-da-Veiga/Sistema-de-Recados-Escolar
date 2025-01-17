@@ -5,6 +5,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
@@ -17,7 +18,7 @@ public class Usuario {
     @NotBlank(message = "Nome obrigatório!")
     String nome;
     
-    @NotBlank(message = "Idade obrigatória!")
+    @NotNull(message = "Idade obrigatória!")
     int idade;
     
     @NotBlank(message = "Login obrigatório!")

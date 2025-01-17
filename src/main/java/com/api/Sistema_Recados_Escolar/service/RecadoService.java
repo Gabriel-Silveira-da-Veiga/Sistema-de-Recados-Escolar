@@ -24,11 +24,11 @@ public class RecadoService {
     }
     
     public List<Recado> listarRecados(Turma turma) {
-        return recadoRepository.findByTurma(turma);
+        return recadoRepository.findByTurmaId(turma.getId());
     }
     
-    public List<Recado> listarRecadosMateria(String materia) {
-        return recadoRepository.findByMateriaContaining(materia);
+    public List<Recado> listarRecadosMateria(Turma turma, String materia) {
+        return recadoRepository.findByTurmaIdAndMateriaContaining(turma.getId(), materia);
     }
     
     public Recado atualizarRecado(Integer id, Recado recadoRequest) {

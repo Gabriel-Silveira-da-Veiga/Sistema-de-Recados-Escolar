@@ -13,19 +13,28 @@
             <div class="col-md-4"></div>
             <div id="principal" class="col-md-4">
                 <h2>Criar Recado</h2>
-
-                <form>
-                    <input class="form-control" type="text" placeholder="Título">
+                
+                <form th:action="@{/salvarRecado/{idTurma}/{idUser}/{userCargo} (idTurma=${recado.turmaId},idUser=${user.id},userCargo=${user.cargo})}" 
+                      method="post" th:object="${recado}">
+                    <input th:field="*{titulo}" class="form-control" type="text" placeholder="Título">
+                    <span class="text-danger" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></span>
                     <br>
-                    <textarea class="form-control" placeholder="Descrição"></textarea>
+                    <textarea th:field="*{descricao}" class="form-control" placeholder="Descrição"></textarea>
+                    <span class="text-danger" th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></span>
                     <br>
-                    <input class="form-control" type="text" placeholder="Matéria">
+                    <input th:field="*{materia}" th:value="*{materia}" class="form-control" type="text" placeholder="Matéria">
+                    <span class="text-danger" th:if="${#fields.hasErrors('materia')}" th:errors="*{materia}"></span>
                     <br>
                     <label for="campoData" class="form-label">Data da Avaliação</label>
-                    <input id="campoData" class="form-control" type="date">
+                    <input  th:field="*{data}" class="form-control" type="text" placeholder="Data da Avaliação: dd/mm/aaaa">
+                    <span class="text-danger" th:if="${#fields.hasErrors('data')}" th:errors="*{data}"></span>
                     <br>
+                    <input type="hidden" th:field="*{turmaId}">
+                    <input type="hidden" th:field="*{funcionarioId}">
                     <button type="submit" class="btn btn-primary">Criar</button>
-                    <a class="btn btn-primary" th:href="/exibirTurmas">Voltar</a>
+                    
+                    <a class="btn btn-primary" th:href="@{/turma/{idTurma}/{idUser}/{userCargo} 
+                       (idTurma=${recado.turmaId}, idUser=${user.id}, userCargo=${user.cargo})}">Voltar</a>
                 </form>
             </div>
             <div class="col-md-4"></div>

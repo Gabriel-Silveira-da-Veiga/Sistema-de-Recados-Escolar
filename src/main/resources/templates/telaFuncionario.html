@@ -12,18 +12,18 @@
         <div id="altura" class="row">
             <div class="col-md-3"></div>
             <div id="principal"  class="col-md-6">
-                <h1>Olá *Usuario*, seja bem-vindo(a)</h1>
+                <h1 th:text="'Olá '+${func.nome}+', seja bem-vindo(a)'"></h1>
                 
                 <div id="botoes">
-                    <a th:href="/matriculaAluno" id="botoesAcoes" class="btn btn-primary btn-lg">Matricular Aluno</a>
+                    <a th:if="${func.cargo == 'Diretoria'}" th:href="@{/matricularAluno/{idUser} (idUser=${func.id})}" id="botoesAcoes" class="btn btn-primary btn-lg">Matricular Aluno</a>
+                    <br th:if="${func.cargo == 'Diretoria'}"> <br th:if="${func.cargo == 'Diretoria'}">
+                    <a th:if="${func.cargo == 'Diretoria'}" th:href="@{/cadastrarFuncionario/{idUser} (idUser=${func.id})}" id="botoesAcoes" class="btn btn-primary btn-lg">Cadastrar Funcionário</a>
+                    <br th:if="${func.cargo == 'Diretoria'}"> <br th:if="${func.cargo == 'Diretoria'}">
+                    <a th:href="@{/exibirUsuarios/{id} (id=${func.id})}" id="botoesAcoes" class="btn btn-primary btn-lg">Visualizar Usuários</a>
                     <br> <br>
-                    <a th:href="/cadastrarFuncionario" id="botoesAcoes" class="btn btn-primary btn-lg">Cadastrar Funcionário</a>
+                    <a th:href="@{/exibirTurmas/{idUser} (idUser=${func.id})}" id="botoesAcoes" class="btn btn-primary btn-lg">Visualizar Turmas</a>
                     <br> <br>
-                    <a th:href="/exibirUsuarios" id="botoesAcoes" class="btn btn-primary btn-lg">Visualizar Usuários</a>
-                    <br> <br>
-                    <a th:href="/exibirTurmas" id="botoesAcoes" class="btn btn-primary btn-lg">Visualizar Turmas</a>
-                    <br> <br>
-                    <a th:href="/" id="botaoSair" class="btn btn-primary btn-lg">Sair</a>
+                    <a th:href="@{/}" id="botaoSair" class="btn btn-primary btn-lg">Sair</a>
                 </div>
             </div>
             <div class="col-md-3"></div>

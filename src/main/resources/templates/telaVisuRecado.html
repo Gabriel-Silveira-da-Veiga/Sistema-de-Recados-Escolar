@@ -13,30 +13,35 @@
             <div class="col-md-1"></div>
             <div id="tudo" class="col-md-10">
                 <div id="titulo">
-                    <h1>*Titulo Postagem*</h1>
+                    <h1 th:text="${recado.titulo}"></h1>
                 </div>
                 <div>
                     <div id="meio" class="row">
                         <div class="col-md-6">
                             <h5>Data da Avaliação</h5>
-                            <p>dd/mm/aaaa</p>
+                            <p th:text="${recado.data}"></p>
                         </div>
                         <div class="col-md-6">
                             <h5>Matéria</h5>
-                            <p >História</p>
+                            <p th:text="${recado.materia}"></p>
                         </div>
                     </div>
                     <br>
                     <div id="conteudo" class="row">
                         <div class="col-md-12">
-                            <p>*Conteúdo*</p>
+                            <p th:text="${recado.descricao}"></p>
                         </div>
                     </div>
                 </div>
                 <div id="botoes" class="col-md-10">
-                    <a th:href="/exibirComentarios" class="btn btn-primary">Ver Comentários</a>
-                    <a th:href="/editarRecado" class="btn btn-primary">Editar Recado</a>
-                    <a th:href="/exibirRecados" class="btn btn-primary">Voltar</a>
+                    <a th:href="@{/exibirComentarios/{idRecado}/{idUser}/{userCargo} 
+                       (idRecado=${recado.id}, idUser=${user.id}, userCargo=${user.cargo})}" class="btn btn-primary">Ver Comentários</a>
+                    
+                    <a th:if="${recado.funcionarioId == user.id and user.cargo != 'Aluno'}" th:href="@{/editarRecado/{idRecado}(idRecado=${recado.id})}" 
+                       class="btn btn-primary">Editar Recado</a>
+                    
+                    <a th:href="@{/turma/{idTurma}/{idUser}/{userCargo} 
+                       (idTurma=${turma.id}, idUser=${user.id}, userCargo=${user.cargo})}" class="btn btn-primary">Voltar</a>
                 </div>
             </div>
             <div class="col-md-1"></div>

@@ -24,7 +24,7 @@ public class ComentarioService {
     }
     
     public List<Comentario> listarComentarios(Recado recado) {
-        return comentRepository.findByRecado(recado);
+        return comentRepository.findByRecadoId(recado.getId());
     }
     
     public Comentario atualizarComentario(Integer id, Comentario comentRequest) {

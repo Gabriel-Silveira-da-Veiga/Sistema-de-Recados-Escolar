@@ -14,34 +14,43 @@
             <div id="principal" class="col-md-6">
                 <h1>Editar Aluno</h1>
                 <br>
-                <form>
+                <form th:action="@{/salvarAluno/{idUser} (idUser=${idUser})}" method="post" th:object="${aluno}">
                     <div class="row">
                         <div class="col-md-9">
-                            <input id="campoGrande" class="form-control" placeholder="Nome">
+                            <input th:value="*{nome}" th:field="*{nome}" type="text" id="campoGrande" class="form-control" placeholder="Nome">
+                            <span class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
                         </div>
                         <div class="col-md-3">
-                            <input id="campoPequenoDireito" class="form-control" placeholder="Idade">
+                            <input th:value="*{idade}" th:field="*{idade}" type="number" id="campoPequenoDireito" class="form-control" placeholder="Idade">
+                            <span class="text-danger" th:if="${#fields.hasErrors('idade')}" th:errors="*{idade}"></span>
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-md-6">
-                            <input id="campoMedio" class="form-control" placeholder="Login">
+                            <input th:value="*{login}" th:field="*{login}" type="text" id="campoMedio" class="form-control" placeholder="Login">
+                            <span class="text-danger" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></span>
                         </div>
                         <div class="col-md-6">
-                            <input id="campoMedioDireito" class="form-control" placeholder="Senha">
+                            <input th:value="*{senha}" th:field="*{senha}" type="text" id="campoMedioDireito" class="form-control" placeholder="Senha">
+                            <span class="text-danger" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></span>
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-md-3">
-                            <input id="campoPequeno" class="form-control" placeholder="Turma">
+                            <select field="*{turma}" id="campoPequeno" class="form-select">
+                                <option th:each="turma : ${listaT}" th:value="${turma}" th:text="${turma.numero}" th:selected="${turma.id} == ${aluno.turmaId}"></option>
+                            </select>
                         </div>
                         <div class="col-md-9"></div>
                     </div>
                     <br>
+                    <input type="hidden" th:field="*{id}">
+                    <input type="hidden" th:field="*{cargo}" value="Aluno">
+                    <input type="hidden" th:field="*{turmaId}">
                     <button  class="btn btn-primary" type="submit">Editar</button>
-                    <a th:href="/menuFuncionario" class="btn btn-primary">Voltar</a>
+                    <a th:href="@{/exibirUsuarios/{id} (id=${idUser})}" class="btn btn-primary">Voltar</a>
                 </form>
             </div>
             <div class="col-md-3"></div>

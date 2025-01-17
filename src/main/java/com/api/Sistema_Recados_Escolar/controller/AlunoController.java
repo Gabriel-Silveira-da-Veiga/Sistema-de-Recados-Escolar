@@ -2,6 +2,7 @@ package com.api.Sistema_Recados_Escolar.controller;
 
 import com.api.Sistema_Recados_Escolar.model.Aluno;
 import com.api.Sistema_Recados_Escolar.service.AlunoService;
+import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ public class AlunoController {
     AlunoService alunoService;
     
     @PostMapping("/criar")
-    public ResponseEntity<Aluno> criarAluno(@RequestBody Aluno aluno) {
+    public ResponseEntity<Aluno> criarAluno(@Valid @RequestBody Aluno aluno) {
         var novoAluno = alunoService.criarAluno(aluno);
         return new ResponseEntity<>(novoAluno, HttpStatus.CREATED);
     }
@@ -40,7 +41,7 @@ public class AlunoController {
     }
     
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<Aluno> atualizarAluno(@PathVariable Integer id, @RequestBody Aluno aluno) {
+    public ResponseEntity<Aluno> atualizarAluno(@Valid @PathVariable Integer id, @RequestBody Aluno aluno) {
         var alunoAtt = alunoService.atualizarAluno(id, aluno);
         return new ResponseEntity<>(alunoAtt, HttpStatus.OK);
     }

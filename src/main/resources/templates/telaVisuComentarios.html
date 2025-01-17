@@ -12,7 +12,7 @@
         <div id="altura" class="row">
             <div class="col-md-1"></div>
             <div id="principal" class="col-md-10">
-                <h1>Comentário de *Títulol Postagem*</h1>
+                <h1 th:text="'Comentário de '+${recado.titulo}"></h1>
                 <br>
                 <div>
                     <table border="1" class="table table-striped">
@@ -24,19 +24,25 @@
                             </tr> 
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>X</td>
-                                <td>AAAAAA</td>
+                            <tr th:each="coment : ${listaC}">
+                                <td th:text="${coment.usuarioNome}"></td>
+                                <td th:text="${coment.conteudo}"></td>
                                 <td>
-                                    <a class="btn btn-primary" th:href="/editarComentario">Editar Comentário</a>
-                                    <a class="btn btn-danger">Excluir Comentário</a>
+                                    <a th:if="${coment.usuarioId == user.id and coment.usuarioCargo == user.cargo}" class="btn btn-primary" 
+                                       th:href="@{/editarComentario/{id} (id=${coment.id})}">Editar Comentário</a>
+                                    
+                                    <a th:if="${coment.usuarioId == user.id and coment.usuarioCargo == user.cargo}" class="btn btn-danger"
+                                       th:href="@{/deletarComent/{id}/{idRecado}/{idUser}/{userCargo} (id=${coment.id},idRecado=${recado.id},idUser=${user.id},userCargo=${user.cargo})}">Excluir Comentário</a>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                     <br/>
-                    <a class="btn btn-primary" th:href="/comentar">Comentar</a>
-                    <a class="btn btn-primary" th:href="/">Voltar</a>
+                    <a class="btn btn-primary" th:href="@{/comentar/{idRecado}/{idUser}/{userCargo} 
+                       (idRecado=${recado.id}, idUser=${user.id}, userCargo=${user.cargo})}">Comentar</a>
+                    
+                    <a class="btn btn-primary" th:href="@{/exibirRecado/{idRecado}/{idTurma}/{idUser}/{userCargo}
+                       (idRecado=${recado.id}, idTurma=${recado.turmaId}, idUser=${user.id}, userCargo=${user.cargo})}">Voltar</a>
                 </div>
             </div>
             <div class="col-md-1"></div>

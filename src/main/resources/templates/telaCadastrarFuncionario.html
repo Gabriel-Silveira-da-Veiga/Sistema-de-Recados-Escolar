@@ -14,42 +14,48 @@
             <div id="principal" class="col-md-6">
                 <h1>Cadastrar Funcionário</h1>
                 <br>
-                <form>
+                <form th:action="@{/salvarFunc/{idUser} (idUser=${idUser})}" method="post" th:object="${func}">
                     <div class="row">
                         <div class="col-md-9">
-                            <input class="form-control" placeholder="Nome">
+                            <input th:field="*{nome}" type="text" class="form-control" placeholder="Nome">
+                            <span class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
                         </div>
                         <div class="col-md-3">
-                            <input class="form-control" placeholder="Idade">
+                            <input th:field="*{idade}" type="number" class="form-control" placeholder="Idade">
+                            <span class="text-danger" th:if="${#fields.hasErrors('idade')}" th:errors="*{idade}"></span>
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-md-6">
-                            <input class="form-control" placeholder="Login">
+                            <input th:field="*{login}" type="text" class="form-control" placeholder="Login">
+                            <span class="text-danger" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></span>
                         </div>
                         <div class="col-md-6">
-                            <input class="form-control" placeholder="Senha">
+                            <input th:field="*{senha}" type="text" class="form-control" placeholder="Senha">
+                            <span class="text-danger" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></span>
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-md-3">
-                            <input class="form-control" placeholder="Turma">
+                            <input th:field="*{turmas}" type="text" class="form-control" placeholder="Turma(s)">
+                            <span class="text-danger" th:if="${#fields.hasErrors('turmas')}" th:errors="*{turmas}"></span>
                         </div>
                         <div class="col-md-3">
-                            <select class="form-select">
-                                <option>Professor</option>
-                                <option>Diretoria</option>
+                            <select th:field="*{cargo}" class="form-select">
+                                <option value="Professor">Professor</option>
+                                <option value="Diretoria">Diretoria</option>
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <input class="form-control"  placeholder="Matéria Lecionada">
+                            <input th:field="*{materiaLecionada}" type="text" class="form-control"  placeholder="Matéria Lecionada">
+                            <span class="text-danger" th:if="${#fields.hasErrors('materiaLecionada')}" th:errors="*{materiaLecionada}"></span>
                         </div>
                     </div>
                     <br>
                     <button class="btn btn-primary" type="submit">Cadastrar</button>
-                    <a th:href="/telaFuncionario" class="btn btn-primary">Voltar</a>
+                    <a th:href="@{/menuFuncionario/{id} (id=${idUser})}" class="btn btn-primary">Voltar</a>
                 </form>
             </div>
             <div class="col-md-3"></div>

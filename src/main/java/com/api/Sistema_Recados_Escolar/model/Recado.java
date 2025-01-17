@@ -19,17 +19,9 @@ public class Recado {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
     
-    @ManyToOne
-    @JoinColumn(name = "funcionario_id")
-    @NotBlank(message = "Usuário obrigatório!")
-    @NotNull(message = "Usuário obrigatório!")
-    Funcionario funcionario;
+    Integer funcionarioId;
     
-    @ManyToOne
-    @JoinColumn(name = "turma_id")
-    @NotBlank(message = "Turma obrigatória!")
-    @NotNull(message = "Turma obrigatória!")
-    Turma turma;
+    Integer turmaId;
     
     @NotBlank(message = "Título obrigatório!")
     String titulo;

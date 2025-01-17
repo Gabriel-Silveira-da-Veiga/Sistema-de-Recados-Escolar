@@ -1,5 +1,7 @@
 package com.api.Sistema_Recados_Escolar.model;
 
+import com.api.Sistema_Recados_Escolar.service.AlunoService;
+import com.api.Sistema_Recados_Escolar.service.FuncionarioService;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,17 +21,17 @@ public class Comentario {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
     
-    @ManyToOne
-    @JoinColumn(name = "recado_id")
-    @NotBlank(message = "Recado obrigatória!")
-    @NotNull(message = "Recado obrigatória!")
-    Recado recado;
+    Integer recadoId;
     
-    @ManyToOne
-    @JoinColumn(name = "usuario_id")
-            @NotBlank(message = "Usuário obrigatória!")
+    Integer usuarioId;
+    
+    @NotBlank(message = "Usuário obrigatória!")
     @NotNull(message = "Usuário obrigatória!")
-    Usuario usuario;
+    String usuarioNome;
+    
+    @NotBlank(message = "Usuário obrigatória!")
+    @NotNull(message = "Usuário obrigatória!")
+    String usuarioCargo;
     
     String conteudo;
 }

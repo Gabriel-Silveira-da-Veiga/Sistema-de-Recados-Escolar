@@ -28,36 +28,36 @@
                             </tr> 
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>AAAAAA</td>
-                                <td>55</td>
-                                <td>101</td>
-                                <td>aaaaa</td>
-                                <td>22222</td>
-                                <td>Funcionario</td>
+                            <tr th:each="f : ${listaF}">
+                                <td th:text="${f.id}"></td>
+                                <td th:text="${f.nome}"></td>
+                                <td th:text="${f.idade}"></td>
+                                <td th:text="${f.turmas}"></td>
+                                <td th:text="${f.login}"></td>
+                                <td th:text="${f.senha}"></td>
+                                <td th:text="${f.cargo}"></td>
                                 <td>
-                                    <a class="btn btn-primary" th:href="/editarFuncionario">Editar Funcionario</a>
-                                    <a class="btn btn-danger">Excluir Funcionario</a>
+                                    <a th:if="${user.cargo == 'Diretoria'}" class="btn btn-primary" th:href="@{/atualizarFuncionario/{id}/{idUser} (id=${f.id}, idUser=${user.id})}">Editar Funcionario</a>
+                                    <a th:if="${user.cargo == 'Diretoria'}" class="btn btn-danger" th:href="@{/deletarFunc/{id}/{idUser} (id=${f.id}, idUser=${user.id})}">Excluir Funcionario</a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>BBBBBb</td>
-                                <td>11</td>
-                                <td>101</td>
-                                <td>bbbbbb</td>
-                                <td>111111</td>
-                                <td>Aluno</td>
+                            <tr th:each="a : ${listaA}">
+                                <td th:text="${a.id}"></td>
+                                <td th:text="${a.nome}"></td>
+                                <td th:text="${a.idade}"></td>
+                                <td th:each="t : ${listaT}" th:if="${t.id == a.turmaId}" th:text="${t.numero}"></td>
+                                <td th:text="${a.login}"></td>
+                                <td th:text="${a.senha}"></td>
+                                <td th:text="${a.cargo}"></td>
                                 <td>
-                                    <a class="btn btn-primary" th:href="/editarAluno">Editar Aluno</a>
-                                    <a class="btn btn-danger">Excluir Aluno</a>
+                                    <a th:if="${user.cargo == 'Diretoria'}" class="btn btn-primary" th:href="@{/editarAluno/{id}/{idUser} (id=${a.id}, idUser=${user.id})}">Editar Aluno</a>
+                                    <a th:if="${user.cargo == 'Diretoria'}" class="btn btn-danger" th:href="@{/deletarAluno/{id}/{idUser} (id=${a.id}, idUser=${user.id})}">Excluir Aluno</a>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                     <br/>
-                    <a class="btn btn-primary" th:href="/menuFuncionario">Voltar</a>
+                    <a class="btn btn-primary" th:href="@{/menuFuncionario/{id} (id=${user.id})}">Voltar</a>
                 </div>
             </div>
             <div class="col-md-1"></div>

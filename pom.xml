@@ -13,6 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>Sistema_Recados_Escolar</name>
     <description>Sistema para alunos conseguirem se organizar em relação a atividades avaliativas</description>
+    <packaging>war</packaging>
     <url/>
     <licenses>
         <license/>
@@ -78,6 +79,7 @@
             </plugin>
 
         </plugins>
+        <finalName>${artifactId}</finalName>
     </build>
 
 </project>

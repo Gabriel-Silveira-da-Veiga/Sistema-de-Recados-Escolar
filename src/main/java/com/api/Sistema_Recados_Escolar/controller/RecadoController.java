@@ -3,6 +3,7 @@ package com.api.Sistema_Recados_Escolar.controller;
 import com.api.Sistema_Recados_Escolar.model.Recado;
 import com.api.Sistema_Recados_Escolar.model.Turma;
 import com.api.Sistema_Recados_Escolar.service.RecadoService;
+import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +24,7 @@ public class RecadoController {
     RecadoService recadoService;
     
     @PostMapping("/criar")
-    public ResponseEntity<Recado> criarRecado(@RequestBody Recado recado) {
+    public ResponseEntity<Recado> criarRecado(@Valid @RequestBody Recado recado) {
         var novoRecado = recadoService.criarRecado(recado);
         return new ResponseEntity<>(novoRecado, HttpStatus.CREATED);
     }
@@ -41,7 +42,7 @@ public class RecadoController {
     }
     
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<Recado> atualizarRecado(@PathVariable Integer id, @RequestBody Recado recado) {
+    public ResponseEntity<Recado> atualizarRecado(@Valid @PathVariable Integer id, @RequestBody Recado recado) {
         var recadoAtt = recadoService.atualizarRecado(id, recado);
         return new ResponseEntity<>(recadoAtt, HttpStatus.OK);
     }

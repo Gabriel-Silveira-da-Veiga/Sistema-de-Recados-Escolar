@@ -2,6 +2,7 @@ package com.api.Sistema_Recados_Escolar.controller;
 
 import com.api.Sistema_Recados_Escolar.model.Funcionario;
 import com.api.Sistema_Recados_Escolar.service.FuncionarioService;
+import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ public class FuncionarioController {
     FuncionarioService funcService;
     
     @PostMapping("/criar")
-    public ResponseEntity<Funcionario> criarFuncionario(@RequestBody Funcionario func) {
+    public ResponseEntity<Funcionario> criarFuncionario(@Valid @RequestBody Funcionario func) {
         var novoFunc = funcService.criarFuncionario(func);
         return new ResponseEntity<>(novoFunc, HttpStatus.CREATED);
     }
@@ -40,7 +41,7 @@ public class FuncionarioController {
     }
     
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<Funcionario> atualizarFuncionario(@PathVariable Integer id, @RequestBody Funcionario func) {
+    public ResponseEntity<Funcionario> atualizarFuncionario(@Valid @PathVariable Integer id, @RequestBody Funcionario func) {
         var funcAtt = funcService.atualizarFuncionario(id, func);
         return new ResponseEntity<>(funcAtt, HttpStatus.OK);
     }

@@ -3,6 +3,7 @@ package com.api.Sistema_Recados_Escolar.controller;
 import com.api.Sistema_Recados_Escolar.model.Comentario;
 import com.api.Sistema_Recados_Escolar.model.Recado;
 import com.api.Sistema_Recados_Escolar.service.ComentarioService;
+import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +24,7 @@ public class ComentarioController {
     ComentarioService comentService;
     
     @PostMapping("/criar")
-    public ResponseEntity<Comentario> criarComentario(@RequestBody Comentario coment) {
+    public ResponseEntity<Comentario> criarComentario(@Valid @RequestBody Comentario coment) {
         var novoComent = comentService.criarComentario(coment);
         return new ResponseEntity<>(novoComent, HttpStatus.CREATED);
     }
@@ -41,7 +42,7 @@ public class ComentarioController {
     }
     
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<Comentario> atualizarComentario(@PathVariable Integer id, @RequestBody Comentario coment) {
+    public ResponseEntity<Comentario> atualizarComentario(@Valid @PathVariable Integer id, @RequestBody Comentario coment) {
         var comentAtt = comentService.atualizarComentario(id, coment);
         return new ResponseEntity<>(comentAtt, HttpStatus.OK);
     }

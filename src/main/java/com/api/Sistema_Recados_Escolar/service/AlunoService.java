@@ -3,6 +3,7 @@ package com.api.Sistema_Recados_Escolar.service;
 import com.api.Sistema_Recados_Escolar.exception.ResourceNotFoundException;
 import com.api.Sistema_Recados_Escolar.model.Aluno;
 import com.api.Sistema_Recados_Escolar.model.AlunoRepository;
+import com.api.Sistema_Recados_Escolar.model.Turma;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +39,7 @@ public class AlunoService {
         Aluno aluno = getAlunoId(id);
         aluno.setNome(alunoRequest.getNome());
         aluno.setIdade(alunoRequest.getIdade());
-        aluno.setTurma(alunoRequest.getTurma());
+        aluno.setTurmaId(alunoRequest.getTurmaId());
         aluno.setLogin(alunoRequest.getLogin());
         aluno.setSenha(alunoRequest.getSenha());
         

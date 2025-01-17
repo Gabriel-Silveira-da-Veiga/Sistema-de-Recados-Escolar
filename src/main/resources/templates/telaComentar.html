@@ -13,11 +13,17 @@
             <div id="principal" class="col-md-6">
                 <h1>Comentar</h1>
                 <br>
-                <form>
-                    <textarea class="form-control" placeholder="Conteúdo" cols="25"></textarea>
+                <form th:action="@{/salvarComent/{idRecado}/{idUser}/{userCargo} (idRecado=${coment.recadoId},idUser=${coment.usuarioId},userCargo=${coment.usuarioCargo})}" 
+                      method="post" th:object="${coment}">
+                    <textarea th:field="*{conteudo}" class="form-control" placeholder="Conteúdo" cols="25"></textarea>
                     <br>
+                    <input type="hidden" th:field="*{recadoId}">
+                    <input type="hidden" th:field="*{usuarioId}">
+                    <input type="hidden" th:field="*{usuarioCargo}">
+                    <input type="hidden" th:field="*{usuarioNome}">
                     <button class="btn btn-primary" type="submit">Comentar</button>
-                    <a class="btn btn-primary" th:href="/exibirComentarios">Voltar</a>
+                    <a class="btn btn-primary" th:href="@{/exibirComentarios/{idRecado}/{idUser}/{userCargo} 
+                       (idRecado=${coment.recadoId}, idUser=${coment.usuarioId}, userCargo=${coment.usuarioCargo})}">Voltar</a>
                 </form>
             </div>
             <div class="col-md-3"></div>

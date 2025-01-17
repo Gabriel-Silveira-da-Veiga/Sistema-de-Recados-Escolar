@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RecadoRepository extends JpaRepository<Recado, Integer>{
-    List<Recado> findByTurma(Turma turma);
+    List<Recado> findByTurmaId(Integer turmaId);
     
-    List<Recado> findByMateriaContaining(String materia);
+    List<Recado> findByTurmaIdAndMateriaContaining(Integer turmaId,String materia);
 }

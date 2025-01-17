@@ -2,6 +2,7 @@ package com.api.Sistema_Recados_Escolar.controller;
 
 import com.api.Sistema_Recados_Escolar.model.Turma;
 import com.api.Sistema_Recados_Escolar.service.TurmaService;
+import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ public class TurmaController {
     TurmaService turmaService;
     
     @PostMapping("/criar")
-    public ResponseEntity<Turma> criarTurma(@RequestBody Turma turma) {
+    public ResponseEntity<Turma> criarTurma(@Valid @RequestBody Turma turma) {
         var novaTurma = turmaService.criarTurma(turma);
         return new ResponseEntity<>(novaTurma, HttpStatus.CREATED);
     }
@@ -40,7 +41,7 @@ public class TurmaController {
     }
     
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<Turma> atualizarTurma(@PathVariable Integer id, @RequestBody Turma turma) {
+    public ResponseEntity<Turma> atualizarTurma(@Valid @PathVariable Integer id, @RequestBody Turma turma) {
         var turmaAtt = turmaService.atualizarTurma(id, turma);
         return new ResponseEntity<>(turmaAtt, HttpStatus.OK);
     }
